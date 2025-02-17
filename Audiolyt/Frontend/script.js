@@ -1,4 +1,4 @@
-const apiUrl = "https://your-backend-app-name.onrender.com/predict";
+const apiUrl = "https://latest-github-io.onrender.com";
 
 async function classifyAudio() {
     const fileInput = document.getElementById("audio-upload");
