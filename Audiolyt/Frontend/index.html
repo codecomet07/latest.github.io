@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <nav class="navbar section-content">
+    <a href="#" class="nav-logo">
+      
+    </a>
+    <ul class="nav-menu">
+      <button id="menu-close-button" class="fas fa-times"></button>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="#detect" class="nav-link">Detect</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact Us</a>
+              </li>
+    </ul>
+    <button id="menu-open-button" class="fas fa-bars"></button>
+  
+      
+    </nav>
+  </header>
+  
+  </header>
+  <!-- Audiolyt Title Section -->
+  
+  <section class="audiolyt-title">
+    <h1>Audiolyt</h1>
+  </section>
+
+  <main>
+    <section class="hero-section">
+      <div class="section-content">
+        <div class="hero-details">
+          <h2 id="typewriter" class="title"></h2>
+
+          <script>
+            const text = "Unlimited Audio Detector";
+            let index = 0;
+            let isDeleting = false;
+          
+            function typeWriterEffect() {
+              const element = document.getElementById("typewriter");
+          
+              if (!isDeleting && index < text.length) {
+                element.innerHTML = text.substring(0, index + 1);
+                index++;
+                setTimeout(typeWriterEffect, 100); // Speed of typing
+              } else if (isDeleting && index > 0) {
+                element.innerHTML = text.substring(0, index - 1);
+                index--;
+                setTimeout(typeWriterEffect, 50); // Speed of deleting
+              } else {
+                isDeleting = !isDeleting; // Toggle between typing and deleting
+                setTimeout(typeWriterEffect, 1000); // Pause before reversing
+              }
+            }
+          
+            window.onload = typeWriterEffect;
+          </script>
+          
+          <h3 class="subtitle">AI-Powered Detection of Deepfake and Auto-Tuned Audio</h3>
+          <p class="description">Audiolyt detects deepfake and auto-tuned audio using advanced AI models, ensuring speech authenticity.</p>
+          <div class="buttons">
+            <a href="#detect" class="button get-started">Get Started</a>
+            
+          <!--<a href="#" class="button contact">Contact Us</a>-->
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <!--<img src="wave.jpg" alt="Hero" class="hero-image">-->
+        </div>
+        <div style="position: relative; width: 100%; height: 100vh; overflow: hidden;">
+          <video autoplay loop muted playsinline 
+              style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+              width: 100vw; height: 100vh; object-fit: cover;">
+              <source src="assets/videospec.mp4" type="video/mp4">
+          </video>
+          <div style="position: relative; z-index: 1; text-align: center; color: white;">
+              <h1>Welcome to AudioLyt</h1>
+              <p>AI-powered deepfake and autotuned audio detection</p>
+       </div>
+      </div>
+      </div>
+    </section>
+    <section class="audio-types-description">
+      <div class="section-content">
+        <div class="audio-type">
+          <h3>Real Audio</h3>
+          <p>Real audio refers to recordings that have been captured naturally, without any manipulation. </p>
+        </div>
+        <div class="audio-type">
+          <h3>Fake Audio</h3>
+          <p>Fake audio refers to audio that has been synthetically generated or manipulated, often to mimic a specific voice or sound.</p>
+        </div>
+        <div class="audio-type">
+          <h3>Autotuned Audio</h3>
+          <p>Autotuned audio involves the use of software to correct or manipulate the pitch of a recording. </p>
+        </div>
+      </div>
+    </section>
+    <!--about -->
+    <section class="about-section" id="about">
+      <div class="section-content">
+        <div class="about-image-wrapper">
+          <img src="assets/imposter-removebg-preview.jpg" alt="About" class="about-image">
+        </div>
+        <div class="about-details">
+          <h2 class="section-title">About Us</h2>
+          <p class="text">Audiolyt is an AI-driven solution designed to detect deepfake and autotuned audio, ensuring authenticity in voice recordings. Using advanced CNN and BiLSTM networks, it analyzes speech patterns and anomalies to differentiate between real and AI-generated voices. Trained on diverse datasets, AudioLyt helps combat voice fraud, misinformation, and unauthorized audio manipulation, making it a vital tool for media authentication, cybersecurity, and forensic applications.</p>
+          
+        </div>
+      </div>
+    </section>
+    
+    <section class="detect-section" id="detect">
+      <div class="section-content">
+        <div class="detect-details">
+          <h2 class="section-title">Detect Audio</h2>
+          <p class="description">
+            Upload an audio file to classify whether it is real, fake or autotuned. Our deep learning model will analyze the file and provide the result.
+          </p>
+          <input type="file" id="audio-upload" class="audio-input" accept="audio/*">
+          <button class="classifyaudio-button" onclick="classifyAudio()">Classify Audio</button>
+          <p id="result-text" class="result-text"></p>
+        </div>
+       <!--<div class="detect-image-wrapper">
+          <img src="detect-image.jpg" alt="Audio Detection Visualization" class="detect-image">
+        </div>-->
+      </div>
+    </section>
+    
+    
+    
+    
+    <script>
+      function classifyAudio() {
+        const fileInput = document.getElementById("audio-upload");
+        const resultText = document.getElementById("result-text");
+    
+        if (fileInput.files.length === 0) {
+          resultText.textContent = "Please upload an audio file first.";
+          resultText.style.color = "red";
+          return;
+        }
+        
+        resultText.textContent = "Analyzing... (This is a placeholder, replace with real processing logic)";
+        resultText.style.color = "green";
+      }
+    </script>
+    <!--contact-->
+   <section class="contact-section" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="section-content">
+      <ul class="contact-info-list">
+      <li class="contact-info">
+        <i class="fa-regular fa-envelope"></i>
+        <p>info@audiolyt.com</p>
+        
+      </li>
+      </ul>
+      <form action="#" class="contact-form">
+        <input type="text" placeholder="your name" class="form-input" required>
+        <input type="email" placeholder="your email" class="form-input"required>
+        <textarea placeholder="your message" class="form-input" required></textarea>
+        <button class="submit-button">Submit</button>
+      </form>
+    </div>
+   </section>
+   <!--footer-->
+   <footer class="footer-section">
+    <div class="section-content">
+      <p class="copyright-text">© 2025 Audiolyt Team. All Rights Reserved.</p>
+    </div>
+   </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
