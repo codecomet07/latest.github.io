@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Download model from GitHub if not present
-MODEL_URL = "https://github.com/your-username/your-repo-name/raw/main/audio_classification_model.h5"
+MODEL_URL = "https://github.com/codecomet07/latest.github.io/audio_classification_model.h5"
 MODEL_PATH = "audio_classification_model.h5"
 
 if not os.path.exists(MODEL_PATH):
