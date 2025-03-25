@@ -67,5 +67,5 @@ def predict():
     return jsonify({'error': 'Could not process the audio'}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 3000))  # Use Render's default port
+    port = int(os.environ.get("PORT", 4000))  # Use Render's default port
     app.run(debug=True, host='0.0.0.0', port=port)
