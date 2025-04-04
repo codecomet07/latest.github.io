@@ -19,7 +19,8 @@ async function classifyAudio() {
     try {
         let response = await fetch(apiUrl, {
             method: "POST",
-            body: formData
+            body: formData,
+            headers:{'Access-Control-Allow-Origin':apiUrl}
         });
         let result = await response.json();
         resultText.textContent = `Prediction: ${result.prediction}`;
