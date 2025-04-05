@@ -1,5 +1,5 @@
-const uploadUrl = "http://192.168.11.196:10000/upload-audio";
-const predictUrl = "http://192.168.11.196:10000/predict";
+const uploadUrl = "https://latest-github-io.onrender.com/upload-audio";
+const predictUrl = "https://latest-github-io.onrender.com/predict";
 
 async function classifyAudio() {
     const fileInput = document.getElementById("audio-upload");
