@@ -22,7 +22,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Download model from GitHub if not present
 MODEL_URL = "https://github.com/codecomet07/latest.github.io/blob/main/audio_classification_model.h5"
-MODEL_PATH = "Backend/audio_classification_model.h5"
+MODEL_PATH = "Audiolyt/Backend/audio_classification_model.h5"
 
 
 
