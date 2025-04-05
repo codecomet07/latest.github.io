@@ -1,4 +1,5 @@
-const apiUrl = "https://latest-github-io.onrender.com";
+const uploadUrl = "http://192.168.11.196:10000/upload-audio";
+const predictUrl = "http://192.168.11.196:10000/predict";
 
 async function classifyAudio() {
     const fileInput = document.getElementById("audio-upload");
@@ -11,22 +12,44 @@ async function classifyAudio() {
     }
 
     const formData = new FormData();
-    formData.append('audio', fileInput.files[0]);
+    formData.append("file", fileInput.files[0]);  // Note: the Flask backend expects 'file'
 
-    resultText.textContent = "Analyzing...";
+    resultText.textContent = "Uploading...";
     resultText.style.color = "blue";
 
     try {
-        let response = await fetch(apiUrl, {
+        // 1. Upload audio to Supabase via Flask
+        const uploadResponse = await fetch(uploadUrl, {
             method: "POST",
-            body: formData,
-            headers:{'Access-Control-Allow-Origin':apiUrl}
+            body: formData
         });
-        let result = await response.json();
-        resultText.textContent = `Prediction: ${result.prediction}`;
+
+        const uploadResult = await uploadResponse.json();
+
+        if (!uploadResult.url) {
+            throw new Error("Upload failed.");
+        }
+
+        const audioUrl = uploadResult.url;
+        resultText.textContent = "Analyzing...";
+        resultText.style.color = "blue";
+
+        // 2. Send the audio URL to your /predict endpoint
+        const predictResponse = await fetch(predictUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ audio_url: audioUrl })
+        });
+
+        const predictResult = await predictResponse.json();
+        resultText.textContent = `Prediction: ${predictResult.prediction}`;
         resultText.style.color = "green";
+
     } catch (error) {
-        resultText.textContent = "Error in processing audio.";
+        console.error(error);
+        resultText.textContent = "Error processing audio.";
         resultText.style.color = "red";
     }
 }
