@@ -3,6 +3,7 @@ from flask_cors import CORS
 import numpy as np
 import tensorflow as tf
 import os
+import io
 import requests
 from utils.feature_extractor import extract_features
 from sklearn.preprocessing import LabelEncoder
