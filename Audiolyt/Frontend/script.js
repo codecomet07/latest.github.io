@@ -37,6 +37,7 @@ async function classifyAudio() {
         // 2. Send the audio URL to your /predict endpoint
         const predictResponse = await fetch(predictUrl, {
             method: "POST",
+            mode:"cors",
             headers: {
                 "Content-Type": "application/json"
             },
