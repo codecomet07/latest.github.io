@@ -75,24 +75,19 @@ def predict():
         return jsonify({'error': 'No audio URL provided'}), 400
 
     try:
-        upload_folder = 'uploads'
-        os.makedirs(upload_folder, exist_ok=True)
+        
 
-        # Get file extension from URL
-        ext = os.path.splitext(audio_url)[1]
-        local_filename = f"temp_audio{ext}"
-        local_path = os.path.join(upload_folder, local_filename)
+       
 
         # Download the audio from Supabase public URL
         response = requests.get(audio_url)
         if response.status_code != 200:
             return jsonify({'error': 'Failed to download audio file from Supabase'}), 500
 
-        with open(local_path, 'wb') as f:
-            f.write(response.content)
+        audio_data = io.BytesIO(response.content)
 
         # Extract features and predict
-        features = extract_features(local_path)
+        features = extract_features(audio_data)
         if features is not None:
             features = features.reshape(1, -1)
             prediction = model.predict(features)
