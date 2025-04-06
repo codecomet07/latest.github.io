@@ -11,7 +11,7 @@ import uuid
 import traceback
 
 app = Flask(__name__)
-CORS(app, origins="https://latest-github-io.onrender.com")
+CORS(app, origins="https://codecomet07.github.io")
 
 # Supabase config
 SUPABASE_URL = "https://wfelzbdrtfyapzrmuuis.supabase.co"
