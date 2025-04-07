@@ -12,7 +12,8 @@ import uuid
 import traceback
 
 app = Flask(__name__)
-CORS(app, origins=["http://127.0.0.1:5500", "http://localhost:5500","https://codecomet07.github.io/latest.github.io/Audiolyt/Frontend/"])
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
+
 # Supabase config
 SUPABASE_URL = "https://wfelzbdrtfyapzrmuuis.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndmZWx6YmRydGZ5YXB6cm11dWlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM4NzQ5NDQsImV4cCI6MjA1OTQ1MDk0NH0.78pcejY1J0Lww8lX-fIhIYUt2nNvhxZJW5Oa0J1Ek3E"
